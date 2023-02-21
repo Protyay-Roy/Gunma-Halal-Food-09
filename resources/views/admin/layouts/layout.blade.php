@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="vendors/feather/feather.css">
 
-    {{-- <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">    --}}
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
     {{-- <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css"> --}}
 
     <!-- endinject -->
@@ -26,6 +26,9 @@
 
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    
+    {{-- CUSTOM CSS --}}
+    <link rel="stylesheet" href="{{ asset('admin') }}/custom_css/custom.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
@@ -247,7 +250,7 @@
 
     {{-- <script src="js/off-canvas.js"></script> --}}
     {{-- <script src="js/hoverable-collapse.js"></script> --}}
-    {{-- <script src="js/template.js"></script> --}}
+    <script src="js/template.js"></script>
 
     {{-- <script src="js/settings.js"></script> --}}
     {{-- <script src="js/todolist.js"></script> --}}
@@ -259,6 +262,8 @@
     <script src="js/Chart.roundedBarCharts.js"></script>
 
     <!-- End custom js for this page-->
+
+
 </body>
 
 </html>

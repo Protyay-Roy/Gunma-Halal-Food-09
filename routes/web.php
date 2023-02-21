@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,22 +29,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
+Route::prefix('admin')->group(function () {
+    //-----------------------------------        VIEW LOGIN PAGE AND GET LOGIN REQUEST FOR ADMIN
+    Route::match(['get', 'post'], 'login', [AdminController::class, 'login']);
 
-Route::view('admin/login', 'admin.login');
-
-Route::prefix('admin')->group(function(){
-
-    Route::group(['middleware' => ['admin']],function () {
-
+    Route::group(['middleware' => ['admin']], function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard']);
+        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     });
-
 });
-
-
-
-

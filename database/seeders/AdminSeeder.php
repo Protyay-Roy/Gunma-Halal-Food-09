@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
     {
         $adminRecord =  [
             [
-                'id' => 1, 'name' => 'Admin', 'email' => 'admin@admin.com', 'password' => Hash::make('11111111'), 'type' => 'admin', 'mobile' => '01869535334', 'address' => 'Dhaka', 'status' => 1
+                'id' => 1, 'name' => 'Admin', 'email' => 'admin@gmail.com', 'password' => Hash::make('11111111'), 'type' => 'admin', 'mobile' => '01869535334', 'address' => 'Dhaka', 'status' => 1
             ], [
                 'id' => 2, 'name' => 'Vendor1', 'email' => 'vendor1@gmail.com', 'password' => Hash::make('11111111'), 'type' => 'vendor', 'mobile' => '01869535334', 'address' => 'Dhaka', 'status' => 1
             ], [

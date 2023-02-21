@@ -19059,7 +19059,7 @@ a.text-dark:hover, a.text-dark:focus {
   .table, .jsgrid .jsgrid-table {
     border-collapse: collapse !important;
   }
-  
+
   .table td,
   .jsgrid .jsgrid-table td, .table th, .jsgrid .jsgrid-table th {
     background-color: #ffffff !important;
@@ -28381,7 +28381,7 @@ div.tagsinput span.tag a {
 }
 
 .auth .brand-logo img {
-  width: 150px;
+  width: 280px;
 }
 
 .auth form .form-group {
@@ -30591,5 +30591,9 @@ div.tagsinput span.tag a {
     display: none;
   }
 }
+
+
+
+
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
