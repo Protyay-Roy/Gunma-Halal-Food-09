@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.admin_management.admin');
     }
 
     /**
@@ -101,7 +102,7 @@ class AdminController extends Controller
                 return response()->json([
                     'status' => true,
                     'view' => (string)View::make('admin.dashboard')
-                    
+
 
                 ]);
             } else {

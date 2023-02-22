@@ -1,46 +1,59 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('dashboard')}}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-toggle="collapse" href="#admin-management" aria-expanded="false" aria-controls="admin-management">
           <i class="icon-layout menu-icon"></i>
-          <span class="menu-title">UI Elements</span>
+          <span class="menu-title">Admin Management</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="admin-management">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('view-admin.index')}}">View Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('view-admin.create')}}">Add Admin</a>
+            </li>
           </ul>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+        <a class="nav-link" data-toggle="collapse" href="#category-management" aria-expanded="false" aria-controls="category-management">
           <i class="icon-columns menu-icon"></i>
-          <span class="menu-title">Form elements</span>
+          <span class="menu-title">Category Management</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="form-elements">
+        <div class="collapse" id="category-management">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/forms/basic_elements.html">View Category</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/forms/basic_elements.html">Add Category</a>
+            </li>
           </ul>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+        <a class="nav-link" data-toggle="collapse" href="#cupon-management" aria-expanded="false" aria-controls="cupon-management">
           <i class="icon-bar-graph menu-icon"></i>
-          <span class="menu-title">Charts</span>
+          <span class="menu-title">Cupon Management</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="charts">
+        <div class="collapse" id="cupon-management">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/charts/chartjs.html">View Cupon</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/charts/chartjs.html">Add Cupon</a>
+            </li>
           </ul>
         </div>
       </li>
