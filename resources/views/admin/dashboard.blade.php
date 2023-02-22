@@ -1,5 +1,10 @@
 @extends('admin.layouts.layout')
-
+@php
+    $dashboard = 'active';
+@endphp
+@section('title')
+    Dashboard
+@endsection
 @section('content')
     <div class="content-wrapper">
         <div class="row">

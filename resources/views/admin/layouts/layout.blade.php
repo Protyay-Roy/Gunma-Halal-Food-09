@@ -5,15 +5,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>Gunma Halal Food | @yield('title', 'Dashboard') </title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    {{-- <link rel="stylesheet" href="{{ asset('admin') }}/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
     <!-- plugins:css -->
 
-    <link rel="stylesheet" href="vendors/feather/feather.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/feather/feather.css">
 
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/ti-icons/css/themify-icons.css">
     {{-- <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css"> --}}
 
     <!-- endinject -->
@@ -28,12 +29,12 @@
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/vertical-layout-light/style.css">
 
     {{-- CUSTOM CSS --}}
     <link rel="stylesheet" href="{{ asset('admin') }}/custom_css/custom.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
 
 </head>
 
@@ -45,7 +46,8 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
-            <div class="theme-setting-wrapper">
+
+            {{-- <div class="theme-setting-wrapper">
                 <div id="settings-trigger"><i class="ti-settings"></i></div>
                 <div id="theme-settings" class="settings-panel">
                     <i class="settings-close ti-close"></i>
@@ -66,8 +68,8 @@
                         <div class="tiles default"></div>
                     </div>
                 </div>
-            </div>
-            <div id="right-sidebar" class="settings-panel">
+            </div> --}}
+            {{-- <div id="right-sidebar" class="settings-panel">
                 <i class="settings-close ti-close"></i>
                 <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                     <li class="nav-item">
@@ -228,7 +230,8 @@
                     </div>
                     <!-- chat tab ends -->
                 </div>
-            </div>
+            </div> --}}
+
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
 
@@ -254,12 +257,12 @@
 
     <!-- plugins:js -->
 
-    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('admin') }}/vendors/js/vendor.bundle.base.js"></script>
 
     <!-- endinject -->
     <!-- Plugin js for this page -->
 
-    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('admin') }}/vendors/chart.js/Chart.min.js"></script>
 
     {{-- <script src="vendors/datatables.net/jquery.dataTables.js"></script> --}}
     {{-- <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script> --}}
@@ -270,7 +273,7 @@
 
     {{-- <script src="js/off-canvas.js"></script> --}}
     {{-- <script src="js/hoverable-collapse.js"></script> --}}
-    <script src="js/template.js"></script>
+    <script src="{{ asset('admin') }}/js/template.js"></script>
 
     {{-- <script src="js/settings.js"></script> --}}
     {{-- <script src="js/todolist.js"></script> --}}
@@ -278,12 +281,12 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
 
-    <script src="js/dashboard.js"></script>
-    <script src="js/Chart.roundedBarCharts.js"></script>
+    <script src="{{ asset('admin') }}/js/dashboard.js"></script>
+    <script src="{{ asset('admin') }}/js/Chart.roundedBarCharts.js"></script>
 
     <!-- End custom js for this page-->
 
-    <script src="js/jquery-3.6.3.min.js"></script>
+    <script src="{{ asset('admin') }}/js/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
 

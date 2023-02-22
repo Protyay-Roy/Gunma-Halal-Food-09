@@ -13843,7 +13843,8 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  /* background-color: rgba(0, 0, 0, 0.03); */
+  background-color: rgb(226, 227, 241);
   border-bottom: 1px solid #e3e3e3;
 }
 
@@ -22790,6 +22791,7 @@ select.border-dark.tt-hint:focus {
   line-height: 1.4rem;
   vertical-align: top;
   margin-bottom: .5rem;
+  font-weight: 500;
 }
 
 .form-group.has-danger .form-control, .form-group.has-danger .asColorPicker-input, .form-group.has-danger .dataTables_wrapper select, .dataTables_wrapper .form-group.has-danger select, .form-group.has-danger .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .form-group.has-danger input[type=text],
