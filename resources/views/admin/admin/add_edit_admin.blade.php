@@ -1,7 +1,9 @@
 @extends('admin.layouts.layout')
-
+@section('title')
+    Admin
+@endsection
 @php
-    $admin_class = 'active';
+    $admins_class = 'active';
 @endphp
 
 @section('content')
@@ -21,26 +23,33 @@
                 <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> Add New Admin</h4>
             </div>
             <div class="card-body col-8">
-                <form class="forms-sample" action="{{ route('store.admin') }}" method="POST" enctype="multipart/form-data">
+                <form class="forms-sample" action="{{ isset($admins->id) ? route('add-edit.admin',$admins->id) : route('add-edit.admin') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$admin->name}}">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$admins->name}}">
                         @error('name')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$admin->email}}">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$admins->email}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Admin Type:</label>
+                        <select name="type" id="type" class="form-control">
+                            <option value="vendor">Vendor</option>
+                            <option value="admin">Admin</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="mobile">Mobile No.:</label>
-                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile number" value="{{$admin->mobile}}">
+                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile number" value="{{$admins->mobile}}">
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Address" value="{{$admin->address}}">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Address" value="{{$admins->address}}">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>

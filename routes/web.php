@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
         Route::get('view-admin', [AdminController::class,'index'])->name('view.admin');
-        Route::get('add-edit-admin/{email?}', [AdminController::class,'addEditAdmin'])->name('add-edit.admin');
-        Route::match(['get', 'post'],'store-admin', [AdminController::class,'store'])->name('store.admin');
+        // Route::get('add-edit-admin/{email?}', [AdminController::class,'addEditAdmin'])->name('add-edit.admin');
+        Route::match(['get', 'post'],'add-edit-admin/{email?}', [AdminController::class,'addEditAdmin'])->name('add-edit.admin');
     });
 });
