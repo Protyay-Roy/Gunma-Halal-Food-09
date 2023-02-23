@@ -10393,7 +10393,8 @@ pre code {
 
 .table-dark {
   color: #fff;
-  background-color: #343a40;
+  background-color: #213444;
+  /* background-color: #343a40; */
 }
 
 .table-dark th,
@@ -14350,7 +14351,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .alert-dismissible .close {
   position: absolute;
-  top: 0;
+  top: -4px;
   right: 0;
   z-index: 2;
   padding: 0.75rem 1.25rem;

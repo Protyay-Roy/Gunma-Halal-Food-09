@@ -1,65 +1,73 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item {{isset($dashboard)?$dashboard:''}}">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item {{isset($admin_class)?$admin_class:''}}">
-            <a class="nav-link" data-toggle="collapse" href="#admin-management" aria-expanded="false"
-                aria-controls="admin-management">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">Admins</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="admin-management">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('view.admin') }}">View Admins</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('add-edit.admin') }}">Add Admin</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#category-management" aria-expanded="false"
-                aria-controls="category-management">
-                <i class="icon-columns menu-icon"></i>
-                <span class="menu-title">Categories</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="category-management">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">View Category</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">Add Category</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#cupon-management" aria-expanded="false"
-                aria-controls="cupon-management">
-                <i class="icon-bar-graph menu-icon"></i>
-                <span class="menu-title">Coupons</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="cupon-management">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">View Cupon</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">Add Cupon</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+        @if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1)
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#admin-management" aria-expanded="false"
+                    aria-controls="admin-management">
+                    <i class="icon-head menu-icon"></i>
+                    <span class="menu-title">Admins</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="admin-management">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('view.admin') }}">View Admins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('add-edit.admin') }}">Add Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#category-management" aria-expanded="false"
+                    aria-controls="category-management">
+                    <i class="icon-columns menu-icon"></i>
+                    <span class="menu-title">Categories</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="category-management">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/forms/basic_elements.html">View Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/forms/basic_elements.html">Add Category</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#cupon-management" aria-expanded="false"
+                    aria-controls="cupon-management">
+                    <i class="icon-bar-graph menu-icon"></i>
+                    <span class="menu-title">Coupons</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="cupon-management">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/charts/chartjs.html">View Cupon</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/charts/chartjs.html">Add Cupon</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        @endif
+
+        @if (auth('admin')->user()->type === 'vendor')
+
+        @endif
+
+        {{-- need to remove --}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
                 <i class="icon-grid-2 menu-icon"></i>

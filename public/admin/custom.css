@@ -1,0 +1,53 @@
+.auth .auth-form-light {
+    border-radius: 10px;
+}
+.content-wrapper {
+    background: #f2f4ff;
+}
+.loader{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 11111;
+}
+.loader img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+tr td a.action_btn:hover{
+    text-decoration: none;
+}
+tr td a.action_btn{
+    padding: 0 5px;
+}
+tr td .action_btn:last-child{
+    margin-left: 10px;
+}
+tr td a.action_btn i{
+    font-size: 18px;
+    transition: transform .2s;
+}
+tr td a.action_btn:hover i{
+    color: #f3ff08;
+    transform: scale(1.3);
+}
+tr .image_status{
+    position: relative !important;
+}
+tr td a.change_status i{
+    font-size: 16px;
+    color: #1fda25;
+    transition: transform .2s;
+}
+tr td a.change_status:hover i{
+    color: #f3ff08;
+    transform: scale(1.3);
+}
+tr .image_status a.change_status{
+    position: absolute;
+    left: 10%;
+    top: 60%;
+}

@@ -45,6 +45,15 @@
                                 <img src="{{ url('images/logo/0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png') }}"
                                     alt="0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png">
                             </div>
+
+                @if (Session::has('error_message'))
+                <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+                    <strong>Error:</strong> {{ Session('error_message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
                             {{-- <h4>Hello! let's get started in admin panel</h4> --}}
                             <h4>Hello! Welcome to Gunma Halal Food admin panel ...</h4>
 
@@ -122,7 +131,10 @@
                 })
             });
 
-
+            $(document).on('click','.close', function(){
+                $('.alert').fadeOut();
+            });
+            
             $('.loader').hide();
         })
     </script>

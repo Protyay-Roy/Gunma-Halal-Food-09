@@ -1,9 +1,12 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{{url('images/logo/0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png')}}" class="mr-2"
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img
+                src="{{ url('images/logo/0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png') }}" class="mr-2"
                 alt="0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png" /></a>
 
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{url('images/logo/0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png')}}" alt="0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png" /></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img
+                src="{{ url('images/logo/0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png') }}"
+                alt="0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -75,7 +78,7 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="images/faces/face28.jpg" alt="profile" />
+                    <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">

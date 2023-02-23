@@ -24,11 +24,11 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email',
-            'mobile' => 'required|numeric',
-            'address' => 'required',
-            'password' => 'required',
+            // 'name' => 'required',
+            // 'email' => 'required|email',
+            // 'mobile' => 'required|numeric',
+            // 'address' => 'required',
+            // 'password' => 'required',
         ];
     }
 }
