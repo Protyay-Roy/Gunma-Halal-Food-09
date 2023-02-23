@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/css/vertical-layout-light/style.css">
 
     {{-- CUSTOM CSS --}}
-    <link rel="stylesheet" href="{{ asset('admin') }}/custom_css/custom.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/custom.css">
 
     <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
 
@@ -120,7 +120,7 @@
                         $('.loader').hide();
                         if(data.status == true){
                             $('body').html(data.view);
-                            window.history.pushState(null, document.title = "Skydash Admin", "dashboard");
+                            window.history.pushState(null, document.title = "Skydash Admin | Dashboard", "dashboard");
                             // window.history.replaceState(null, "null", window.location.href = "dashboard")
                         }else{
                             alert('Page Error')
@@ -134,7 +134,7 @@
             $(document).on('click','.close', function(){
                 $('.alert').fadeOut();
             });
-            
+
             $('.loader').hide();
         })
     </script>

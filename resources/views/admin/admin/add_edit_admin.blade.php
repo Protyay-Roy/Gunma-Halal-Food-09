@@ -47,14 +47,14 @@
                     <div class="form-group">
                         <label for="type">Admin Type:</label>
                         <select name="type" id="type" class="form-control">
-                            @if (!empty($admins->id))
+                            {{-- @if (!empty($admins->id))
                                 <option value="{{$admins->type}}">{{ucfirst($admins->type)}}</option>
                                 <option value="vendor" >Vendor</option>
                                 <option value="admin">Admin</option>
-                            @else
-                            <option value="vendor" >Vendor</option>
-                            <option value="admin">Admin</option>
-                            @endif
+                            @else --}}
+                            <option {{(isset($admins->id) && $admins->type == 'vendor') ? 'selected' : ''}} value="vendor" >Vendor</option>
+                            <option {{(isset($admins->id) && $admins->type == 'admin') ? 'selected' : ''}} value="admin">Admin</option>
+                            {{-- @endif --}}
                         </select>
                     </div>
                     <div class="form-group">
@@ -89,7 +89,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="image">Profile Image:</label>
+                        <label for="image">Profile Image:</label> <small class="text-muted">(Your image size should be 1000 x 1000 pixels)</small>
                         <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">

@@ -35,10 +35,28 @@
                 <div class="collapse" id="category-management">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/forms/basic_elements.html">View Category</a>
+                            <a class="nav-link" href="pages/forms/basic_elements.html">View Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/forms/basic_elements.html">Add Category</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#product-management" aria-expanded="false"
+                    aria-controls="product-management">
+                    <i class="icon-columns menu-icon"></i>
+                    <span class="menu-title">Products</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="product-management">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/forms/basic_elements.html">View Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/forms/basic_elements.html">Add Product</a>
                         </li>
                     </ul>
                 </div>
@@ -53,13 +71,43 @@
                 <div class="collapse" id="cupon-management">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/charts/chartjs.html">View Cupon</a>
+                            <a class="nav-link" href="pages/charts/chartjs.html">View Cupons</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/charts/chartjs.html">Add Cupon</a>
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#user-management" aria-expanded="false"
+                    aria-controls="user-management">
+                    <i class="icon-bar-graph menu-icon"></i>
+                    <span class="menu-title">Users</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="user-management">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/charts/chartjs.html">View Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/charts/chartjs.html">Add User</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Payments</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Orders</span>
+                </a>
             </li>
         @endif
 
@@ -68,7 +116,7 @@
         @endif
 
         {{-- need to remove --}}
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
                 <i class="icon-grid-2 menu-icon"></i>
                 <span class="menu-title">Tables</span>
@@ -123,6 +171,6 @@
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
