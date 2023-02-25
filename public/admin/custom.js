@@ -49,3 +49,23 @@ $(document).on("click", ".change_status", function () {
         }
     })
 })
+
+// $('#myform').on('submit',function(e){
+//     e.preventDefault();
+//     alert('');
+//     var form = $('#myform')[0];
+//     var formData = new FormData(form);
+//     // $.ajax({
+//     //     headers: {
+//     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     //     },
+//     //     url: 'upload-image',
+//     //     data: formData,
+//     //     type:'POST',
+//     //     success:function(data){
+//     //         alert(data)
+//     //     },error:function(){
+//     //         alert('Error');
+//     //     }
+//     // });
+// })

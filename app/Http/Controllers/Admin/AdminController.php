@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
@@ -46,6 +47,64 @@ class AdminController extends Controller
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+    // CHANGE PROFILE IMAGE
+    public function uploadImage(Request $request)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'update_image' => 'required|image'
+        // ], [
+        //     'update_image.required' => 'Require a image file.',
+        //     'update_image.image' => 'The file must be an Image.',
+        // ]);
+        $request->validate([
+            'update_image' => 'required|image'
+        ], [
+            'update_image.required' => 'Require a image file.',
+            'update_image.image' => 'The file must be an Image.',
+        ]);
+
+        if ($request->isMethod('post')) {
+            if ($request->hasFile('update_image')) {
+                $image_tmp = $request->file('update_image');
+                if ($image_tmp->isValid()) {
+                    // DELETE PREVIOUS IMAGE
+                    if (File::exists(auth('admin')->user()->image)) {
+                        File::delete(auth('admin')->user()->image);
+                    }
+                    // GET FULL IMAGE NAME WITH EXTENTION
+                    $image_full_name = $image_tmp->getClientOriginalName();
+
+                    // GET IMAGE NAME WITHOUT EXTENSION
+                    $image_first_name = pathinfo($image_full_name, PATHINFO_FILENAME);
+
+                    // GET IMAGE EXTENSION
+                    $extention = $image_tmp->getClientOriginalExtension();
+
+                    // TO GET UNIQUE IMAGE NAME
+                    $unique = Str::random(10);
+
+                    // SET UNIQUE IMAGE NAME
+                    $image_name = $image_first_name . $unique . '.' . $extention;
+
+                    // SET IMAGE PATH
+                    $image_path = 'images/admin_image/' . $image_name;
+                    Image::make($image_tmp)->resize(1000, 1000)->save($image_path);
+                }
+            } else {
+                $image_path = 'images/dummy_image/person.jpg';
+            }
+            Admin::find(auth('admin')->user()->id)->update([
+                'image' => $image_path
+            ]);
+
+            return back()->with('success_message', 'Your image successfully update');
+        }
+        // if ($validator->passes()) {
+        // }
+        // else {
+        //     return back()->with('error_message', $validator->messages('update_image'));
+        // }
     }
     // CHANGE PASSWORD
 
@@ -91,9 +150,9 @@ class AdminController extends Controller
                         $image_tmp = $request->file('image');
                         if ($image_tmp->isValid()) {
                             // DELETE PREVIOUS IMAGE
-                            $previous_image_path = 'images/admin_image/' . $admins->image;
-                            if (File::exists($previous_image_path)) {
-                                File::delete($previous_image_path);
+                            // $previous_image_path = $admins->image;
+                            if (File::exists($admins->image)) {
+                                File::delete($admins->image);
                             }
                             // GET FULL IMAGE NAME WITH EXTENTION
                             $image_full_name = $image_tmp->getClientOriginalName();
@@ -133,7 +192,6 @@ class AdminController extends Controller
                 }
             }
             return view('admin.admin.add_edit_admin', compact('admins', 'title'));
-
         } else {
             return redirect('admin/login')->with('error_message', 'You are not admin or your account will be inactive!');
         }
@@ -154,5 +212,4 @@ class AdminController extends Controller
             return response()->json(['status' => $status, 'status_id' => $data['status_id']]);
         }
     }
-
 }

@@ -49,5 +49,8 @@ Route::prefix('admin')->group(function () {
 
         // VIEW PROFILE
         Route::view('profile', 'admin.profile.view-profile')->name('profile');
+
+        // UPDATE ADMIN PROFILE IMAGE
+        Route::post('upload-image', [AdminController::class, 'uploadImage'])->name('upload_image');
     });
 });
