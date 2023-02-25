@@ -42,10 +42,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
         Route::get('view-admin', [AdminController::class,'adminList'])->name('view.admin');
-        // Route::get('add-edit-admin/{email?}', [AdminController::class,'addEditAdmin'])->name('add-edit.admin');
         Route::match(['get', 'post'],'add-edit-admin/{email?}', [AdminController::class,'addEditAdmin'])->name('add-edit.admin');
 
         // CHANGE ADMIN STATUS
         Route::post('admin-status', [AdminController::class, 'status']);
+
+        // VIEW PROFILE
+        Route::view('profile', 'admin.profile.view-profile')->name('profile');
     });
 });

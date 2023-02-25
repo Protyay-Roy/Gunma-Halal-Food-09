@@ -15,6 +15,40 @@ use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
+    //  LOGIN ADMIN
+    public function login(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            if (Auth::guard('admin')->attempt([
+                'email' => $data['email'], 'password' => $data['password']
+            ])) {
+                // return redirect('/admin/dashboard');
+                return response()->json([
+                    'status' => true,
+                    'view' => (string)View::make('admin.dashboard')
+
+
+                ]);
+            } else {
+                return redirect()->back()->with('error_msg', 'Invalid Email or Password');
+            }
+        }
+        return view('admin.login');
+    }
+    //  LOGOUT ADMIN
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect('admin/login');
+    }
+    // VIEW DASHBOARD
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+    // CHANGE PASSWORD
+
     public function adminList()
     {
         if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
@@ -121,36 +155,4 @@ class AdminController extends Controller
         }
     }
 
-    public function dashboard()
-    {
-        return view('admin.dashboard');
-    }
-
-    //  LOGIN ADMIN
-    public function login(Request $request)
-    {
-        if ($request->isMethod('post')) {
-            $data = $request->all();
-            if (Auth::guard('admin')->attempt([
-                'email' => $data['email'], 'password' => $data['password']
-            ])) {
-                // return redirect('/admin/dashboard');
-                return response()->json([
-                    'status' => true,
-                    'view' => (string)View::make('admin.dashboard')
-
-
-                ]);
-            } else {
-                return redirect()->back()->with('error_msg', 'Invalid Email or Password');
-            }
-        }
-        return view('admin.login');
-    }
-
-    public function logout()
-    {
-        Auth::guard('admin')->logout();
-        return redirect('admin/login');
-    }
 }

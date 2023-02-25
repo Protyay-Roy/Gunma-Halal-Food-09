@@ -104,20 +104,21 @@
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller action="{{ url('/admin/login') }}" method="POST"  -->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> --}}
+        <script src="{{ asset('admin') }}/js/jquery-3.6.3.min.js"></script>
 
     <script>
         $(document).ready(function() {
             $('#admin_login').submit(function() {
-                $('.loader').show();
+                $('.loader').fadeIn();
                 var formData = $(this).serialize();
                 $.ajax({
                     url: "login",
                     type: "post",
                     data: formData,
                     success: function(data) {
-                        $('.loader').hide();
+                        $('.loader').fadeOut();
                         if(data.status == true){
                             $('body').html(data.view);
                             window.history.pushState(null, document.title = "Skydash Admin | Dashboard", "dashboard");
@@ -135,7 +136,7 @@
                 $('.alert').fadeOut();
             });
 
-            $('.loader').hide();
+            $('.loader').fadeOut();
         })
     </script>
 

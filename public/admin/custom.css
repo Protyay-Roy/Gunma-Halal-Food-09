@@ -51,3 +51,11 @@ tr .image_status a.change_status{
     left: 10%;
     top: 60%;
 }
+.profile-image{
+    background-color: rgb(243, 243, 243);
+    padding: 2rem;
+    box-shadow: 10px 15px 15px 1px #d9d9d9;
+}
+.profile-image img{
+    border-radius: 50% !important;
+}
