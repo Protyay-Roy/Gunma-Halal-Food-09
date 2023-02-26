@@ -13,7 +13,18 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-4">
-                <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> {{$title}}</h4>
+                <h4 class="text-center mb-0 py-2">
+                    {{-- <i class="fa-solid fa-person"></i>  &nbsp; --}}
+                    {{-- {{$title}} --}}
+                    {{-- @php
+                        echo $title;
+                    @endphp --}}
+                    @if ($title == "Add")
+                        <i class="fa-solid fa-user-plus"></i> &nbsp;  Add New Admin
+                    @else
+                        <i class='fa-solid fa-user-pen'></i> &nbsp;  Update Admin Information
+                    @endif
+                </h4>
             </div>
             <div class="card-body col-8">
                 @if (Session::has('error_message'))
@@ -93,10 +104,10 @@
                         <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">
-                        @if ($title == 'Add New Admin')
-                            Add Admin
+                        @if ($title == 'Add')
+                            <i class="fa-solid fa-plus"></i> &nbsp; Add Admin
                         @else
-                            Update Admin
+                            <i class="fa-solid fa-rotate"></i> &nbsp; Update Admin
                         @endif
                     </button>
                 </form>

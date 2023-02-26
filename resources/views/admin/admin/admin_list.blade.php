@@ -5,11 +5,11 @@
 @section('content')
     <div class="card">
         <div class="card-header mt-4    ">
-            <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> All admin list</h4>
+            <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-user"></i> &nbsp; All admin list</h4>
         </div>
         <div class="card-body">
             {{-- <h4 class="card-title">All admin list</h4> --}}
-            <div class="table-responsive pt-3">
+            <div class="table-responsive">
                 @if (Session::has('success_message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success:</strong> {{ Session('success_message') }}
@@ -115,7 +115,7 @@
                                 <td>
                                     <a href="{{ route('add-edit.admin', $admin->email) }}" class="action_btn text-info"
                                         title="Edit Admin">
-                                        <i class="fa-solid fa-pencil"></i>
+                                        <i class="fa-solid fa-pen-to-square"></i>
 
                                     </a>
                                     @if ($admin->type !== 'admin')

@@ -113,13 +113,16 @@ tr .image_status a.change_status {
 .form_card{
     border: 1px solid #999999;
     padding: 1rem 0.6rem;
-    margin-top: 2rem;
+    margin-top: 0.3125rem;
     border-radius: .3125rem;
     box-shadow: 5px 10px 10px 1px #d9d9d9;
 }
 .form_card h4{
     margin-bottom: 1rem;
-    padding-bottom: .5rem;
+    padding-bottom: .8rem;
     border-bottom: 1px dotted #acacac;
     text-align: center;
+}
+.body-content{
+    padding-top: 0 !important;
 }

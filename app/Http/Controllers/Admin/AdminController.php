@@ -107,11 +107,40 @@ class AdminController extends Controller
         // }
     }
     // UPDATE ADMIN PROFILE
-    public function updateProfile()
+    public function updateProfile(Request $request)
     {
-        // return view('');
+        $request->validate([
+            'name' => 'required',
+            'mobile' => 'required|numeric',
+            'address' => 'required',
+        ]);
+        Admin::find(auth('admin')->user()->id)->update([
+            'name' => ucwords($request->name),
+            'mobile' => $request->mobile,
+            'address' => ucwords($request->address),
+        ]);
+        return back()->with('success_message', 'Your profile information update successfully.');
     }
     // CHANGE PASSWORD
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:8'
+        ]);
+        if ($request->new_password !== $request->confirm_password) {
+            return back()->with('error_message', "Your confirm password doesn't match!");
+        } else {
+            if (Hash::check(auth('admin')->user()->id, $request->old_password)) {
+                Admin::find(auth('admin')->user()->id)->update([
+                    'password' => Hash::make($request->new_password)
+                ]);
+                return back()->with('success_message', 'Your password update successfully.');
+            } else {
+                return back()->with('error_message', "Please enter your correct password!");
+            }
+        }
+    }
 
     public function adminList()
     {
@@ -130,11 +159,11 @@ class AdminController extends Controller
         if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
             if ($email == null) {
                 $admins = new Admin;
-                $title = 'Add New Admin';
+                $title = 'Add';
                 $message = 'Your ' . ucfirst($request->type) . ' successfully added.';
             } else {
                 $admins = Admin::where('email', $email)->first();
-                $title = 'Update Admin Information';
+                $title = "Update";
                 $message = 'Your ' . ucfirst($request->type) . ' information update successfully.';
             }
             // REQUEST METHOD IS POST OR NOT

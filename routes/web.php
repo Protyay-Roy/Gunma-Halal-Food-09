@@ -55,6 +55,8 @@ Route::prefix('admin')->group(function () {
         // VIEW UPDATE PROFILE PAGE
         Route::view('update-profile', 'admin.profile.update_profile')->name('view-update-profile');
         // UPDATE ADMIN PROFILE
-        // Route::match(['get', 'post'], 'update-profile', [AdminController::class, 'updateProfile'])->name('update-profile');
+        Route::post('update-own-profile', [AdminController::class, 'updateProfile'])->name('update-own-profile');
+        // UPDATE ADMIN PROFILE
+        Route::post('change-password', [AdminController::class, 'changePassword'])->name('change-password');
     });
 });
