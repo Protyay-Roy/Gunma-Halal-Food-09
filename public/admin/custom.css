@@ -1,6 +1,9 @@
 .btn{
     border-radius: 0.5rem !important;
 }
+.clearfix{
+    clear: both;
+}
 .auth .auth-form-light {
     border-radius: 10px;
 }
@@ -107,15 +110,15 @@ tr .image_status a.change_status {
 .profile-image:hover .overlay {
     transform: scale(1);
 }
-.img-btn{
+.form_card{
     border: 1px solid #999999;
     padding: 1rem 0.6rem;
     margin-top: 2rem;
     border-radius: .3125rem;
     box-shadow: 5px 10px 10px 1px #d9d9d9;
 }
-.img-btn h4{
-    margin-bottom: 2rem;
+.form_card h4{
+    margin-bottom: 1rem;
     padding-bottom: .5rem;
     border-bottom: 1px dotted #acacac;
     text-align: center;

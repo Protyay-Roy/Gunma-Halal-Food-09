@@ -106,6 +106,11 @@ class AdminController extends Controller
         //     return back()->with('error_message', $validator->messages('update_image'));
         // }
     }
+    // UPDATE ADMIN PROFILE
+    public function updateProfile()
+    {
+        // return view('');
+    }
     // CHANGE PASSWORD
 
     public function adminList()
