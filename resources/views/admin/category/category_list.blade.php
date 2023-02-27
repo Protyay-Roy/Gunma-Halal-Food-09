@@ -1,11 +1,11 @@
 @extends('admin.layouts.layout')
 @section('title')
-    Admin
+    Category
 @endsection
 @section('content')
     <div class="card">
         <div class="card-header mt-4    ">
-            <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> All admin list</h4>
+            <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> All category list</h4>
         </div>
         <div class="card-body">
             {{-- <h4 class="card-title">All admin list</h4> --}}
@@ -30,99 +30,110 @@
                     <thead>
                         <tr>
                             <th>
-                                Admins:
+                                Categories:
                             </th>
                             <th>
                                 Name:
                             </th>
                             <th>
-                                Email:
-                            </th>
-                            <th>
                                 Type:
                             </th>
-                            <th>
-                                Mobile:
-                            </th>
-                            <th>
-                                Address:
-                            </th>
                             {{-- <th>
-                                Status:
+                                Meta Description:
                             </th> --}}
+                            {{-- <th>
+                                Description:
+                            </th> --}}
+                            {{-- <th>
+                                Address:
+                            </th> --}}
+                            <th>
+                                Status:
+                            </th>
                             <th>
                                 Action:
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admins as $admin)
+                        @foreach ($categories as $category)
+                            @php
+                                // if(strlen($category->description) > 20){
+
+                                // }else {
+                                //     echo $category->description;
+                                // }
+                                // die;
+                            @endphp
                             <tr>
-                                <td class="image_status">
-                                    <a href="{{ url('' . $admin->image) }}" title="View Image">
-                                        <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}">
-                                    </a>
-                                    @if ($admin->status == 1)
+                                <td class="cat_image">
+                                    @if (!empty($category->image))
+                                        <a href="{{ url('' . $category->image) }}" title="View Image">
+                                            <img src="{{ url('' . $category->image) }}" alt="{{ $category->image }}"
+                                                class="img-fluid">
+                                        </a>
+                                    @else
+                                        <img src="{{ url('images/dummy_image/no_img.png') }}" alt="no_img.png"
+                                            title="No Image" class="img-fluid bg-light" style="border:1px solid #ffffff">
+                                    @endif
+                                    {{-- @if ($category->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="admin-{{ $admin->id }}" status_id="{{ $admin->id }}"
-                                            status_path="admin">
-                                            {{-- <i class="mdi mdi-checkbox-marked-circle" status="Active"></i> --}}
+                                            id="admin-{{ $category->id }}" status_id="{{ $category->id }}"
+                                            status_path="category">
                                             <i class="fa-sharp fa-solid fa-circle-check" status="Active"></i>
-                                            {{-- <i class="fa-solid fa-circle" status="Active" title="Change into inactive"></i> --}}
 
                                         </a>
                                     @else
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="admin-{{ $admin->id }}" status_id="{{ $admin->id }}"
-                                            status_path="admin">
+                                            id="admin-{{ $category->id }}" status_id="{{ $category->id }}"
+                                            status_path="category">
                                             <i class="fa-regular fa-circle" status="Inactive"
                                                 title="Change into active"></i>
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 </td>
                                 <td>
-                                    {{ $admin->name }}
+                                    {{ $category->name }}
                                 </td>
                                 <td>
-                                    {{ $admin->email }}
-                                </td>
-                                <td>
-                                    {{ ucfirst($admin->type) }}
-                                </td>
-                                <td>
-                                    {{ $admin->mobile }}
-                                </td>
-                                <td>
-                                    {{ $admin->address }}
+                                    {{ $category->category_id }}
                                 </td>
                                 {{-- <td>
-                                    @if ($admin->status == 1)
+                                    {{ ucfirst($category->meta_description) }}
+                                </td> --}}
+                                {{-- <td>
+                                    {{ $category->description }}
+                                </td> --}}
+                                {{-- <td>
+                                    {{ $category->address }}
+                                </td> --}}
+                                <td>
+                                    @if ($category->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                        id="brand-{{ $admin->id }}" status_id="{{ $admin->id }}"
+                                            id="brand-{{ $category->id }}" status_id="{{ $category->id }}"
                                             status_path="brand">
                                             <i class="fa-sharp fa-solid fa-circle-check" status="Active"></i>
-                                            <i class="fa-solid fa-circle"></i>
+                                            {{-- <i class="fa-solid fa-circle"></i> --}}
 
                                         </a>
                                     @else
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="brand-{{ $admin->id }}" status_id="{{ $admin->id }}"
+                                            id="brand-{{ $category->id }}" status_id="{{ $category->id }}"
                                             status_path="brand">
                                             <i class="fa-regular fa-circle" status="Inactive"></i>
                                         </a>
                                     @endif
-                                </td> --}}
+                                </td>
                                 <td>
-                                    <a href="{{ route('add-edit.admin', $admin->email) }}" class="action_btn text-info"
+                                    <a href="{{ route('add-edit.admin', $category->slug) }}" class="action_btn text-info"
                                         title="Edit Admin">
                                         <i class="fa-solid fa-pencil"></i>
 
                                     </a>
-                                    @if ($admin->type !== 'admin')
-                                        <a href="" class="action_btn text-danger" title="Delete Admin">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
-                                    @endif
+                                    <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Category"
+                                        delete_id={{ $category->id }} delete_path="category">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -35,7 +35,7 @@
                 <div class="collapse" id="category-management">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/forms/basic_elements.html">View Categories</a>
+                            <a class="nav-link" href="{{ route('category') }}">View Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/forms/basic_elements.html">Add Category</a>

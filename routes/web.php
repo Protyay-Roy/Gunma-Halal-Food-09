@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,7 @@ Route::prefix('admin')->group(function () {
 
         // CHANGE ADMIN STATUS
         Route::post('admin-status', [AdminController::class, 'status']);
-        // DELETE ADMIN TYPE==VENDOR
+        // DELETE ADMIN (TYPE==VENDOR)
         Route::get('delete-admin/{admin}', [AdminController::class, 'destroy'])->name('delete-admin');
 
         // VIEW PROFILE
@@ -60,5 +61,7 @@ Route::prefix('admin')->group(function () {
         Route::post('update-own-profile', [AdminController::class, 'updateProfile'])->name('update-own-profile');
         // UPDATE ADMIN PROFILE
         Route::post('change-password', [AdminController::class, 'changePassword'])->name('change-password');
+        // VIEW CATEGORY LISTING PAGE
+        Route::get('category', [CategoryController::class, 'index'])->name('category');
     });
 });

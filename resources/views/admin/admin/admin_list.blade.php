@@ -59,16 +59,15 @@
                         @foreach ($admins as $admin)
                             <tr>
                                 <td class="image_status">
-                                    <a href="{{ url('' . $admin->image) }}" title="View Image">
-                                        {{-- <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}"> --}}
-                                        @if (!empty($admin->image))
+                                    @if (!empty($admin->image))
+                                        <a href="{{ url('' . $admin->image) }}" title="View Image">
                                             <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}"
                                                 class="img-fluid">
-                                        @else
-                                            <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png"
-                                                class="img-fluid bg-light" style="border:1px solid #ffffff">
-                                        @endif
-                                    </a>
+                                        </a>
+                                    @else
+                                        <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png" title="No Image"
+                                            class="img-fluid bg-light" style="border:1px solid #ffffff">
+                                    @endif
                                     @if ($admin->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"
                                             id="admin-{{ $admin->id }}" status_id="{{ $admin->id }}"
@@ -126,8 +125,8 @@
 
                                     </a>
                                     @if ($admin->type !== 'admin')
-
-                                        <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Admin" delete_id={{$admin->id}} delete_path="admin">
+                                        <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Admin"
+                                            delete_id={{ $admin->id }} delete_path="admin">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
                                     @endif
