@@ -48,6 +48,36 @@ $(document).on("click", ".change_status", function () {
             })
         }
     })
+});
+
+// DELETE WITH SWEET ALERT
+$(document).on("click", ".delete_row", function () {
+    // DELETE CODE START
+    var delete_id = $(this).attr("delete_id");
+    var delete_path = $(this).attr("delete_path");
+
+    // SWEET ALERT START
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Deleted!',
+                'Your ' + delete_path + ' has been deleted.',
+                'success'
+            )
+
+            // DELETE ROUTE
+            window.location = "delete-" + delete_path + "/" + delete_id;
+        }
+    })
+
 })
 
 // $('#myform').on('submit',function(e){

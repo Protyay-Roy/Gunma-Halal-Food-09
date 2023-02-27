@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('parent_id');
-            $table->string('name');
+            $table->foreignId('category_id')->nullable()->constrained();
+            $table->string('name', 100);
+            $table->string('slug')->unique();
+            $table->string('meta_description')->nullable();
+            $table->tinyInteger('status');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

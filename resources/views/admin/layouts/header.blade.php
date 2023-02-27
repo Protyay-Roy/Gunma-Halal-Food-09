@@ -78,7 +78,14 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}" />
+                    {{-- <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}" /> --}}
+                    @if (!empty(auth('admin')->user()->image))
+                        <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}"
+                            class="img-fluid">
+                    @else
+                        <img src="{{ url('images/dummy_image/person.png') }}" alt="{{ auth('admin')->user()->image }}"
+                            class="img-fluid">
+                    @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="{{ route('profile') }}">

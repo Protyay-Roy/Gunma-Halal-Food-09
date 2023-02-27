@@ -92,7 +92,7 @@ class AdminController extends Controller
                     Image::make($image_tmp)->resize(1000, 1000)->save($image_path);
                 }
             } else {
-                $image_path = 'images/dummy_image/person.jpg';
+                $image_path = auth('admin')->user()->image;
             }
             Admin::find(auth('admin')->user()->id)->update([
                 'image' => $image_path
@@ -208,7 +208,7 @@ class AdminController extends Controller
                             Image::make($image_tmp)->resize(1000, 1000)->save($image_path);
                         }
                     } else {
-                        $image_path = 'images/dummy_image/person.jpg';
+                        $image_path = $admins->image;
                     }
                     // SAVE ADMIN RECORDS
                     $admins->name = ucwords($request->name);
@@ -244,6 +244,16 @@ class AdminController extends Controller
             Admin::where('id', $data['status_id'])->update(['status' => $status]);
 
             return response()->json(['status' => $status, 'status_id' => $data['status_id']]);
+        }
+    }
+
+    public function destroy(Admin $admin)
+    {
+        if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
+            $admin->delete();
+            return back()->with('success_message', 'Your admin successfully deleted.');
+        } else {
+            return redirect('admin/login')->with('error_message', 'You are not admin or your account will be inactive!');
         }
     }
 }

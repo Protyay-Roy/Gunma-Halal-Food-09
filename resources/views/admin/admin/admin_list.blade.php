@@ -60,7 +60,14 @@
                             <tr>
                                 <td class="image_status">
                                     <a href="{{ url('' . $admin->image) }}" title="View Image">
-                                        <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}">
+                                        {{-- <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}"> --}}
+                                        @if (!empty($admin->image))
+                                            <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}"
+                                                class="img-fluid">
+                                        @else
+                                            <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png"
+                                                class="img-fluid bg-light" style="border:1px solid #ffffff">
+                                        @endif
                                     </a>
                                     @if ($admin->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"
@@ -119,7 +126,8 @@
 
                                     </a>
                                     @if ($admin->type !== 'admin')
-                                        <a href="" class="action_btn text-danger" title="Delete Admin">
+
+                                        <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Admin" delete_id={{$admin->id}} delete_path="admin">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
                                     @endif

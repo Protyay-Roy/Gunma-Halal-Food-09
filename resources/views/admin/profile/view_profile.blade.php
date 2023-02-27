@@ -34,8 +34,14 @@
                     <div class="col-4">
                         <div class="row">
                             <div class="profile-image">
+                                @if (!empty(auth('admin')->user()->image))
                                 <img src="{{ url('' . auth('admin')->user()->image) }}"
                                     alt="{{ auth('admin')->user()->image }}" class="img-fluid">
+                                @else
+
+                                <img src="{{ url('images/dummy_image/person.png') }}"
+                                alt="{{ auth('admin')->user()->image }}" class="img-fluid">
+                                @endif
                                 <div class="overlay text-center">
                                     <div class="image-button">
                                         <a href="{{ url('' . auth('admin')->user()->image) }}"

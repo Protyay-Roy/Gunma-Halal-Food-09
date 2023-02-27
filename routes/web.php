@@ -46,6 +46,8 @@ Route::prefix('admin')->group(function () {
 
         // CHANGE ADMIN STATUS
         Route::post('admin-status', [AdminController::class, 'status']);
+        // DELETE ADMIN TYPE==VENDOR
+        Route::get('delete-admin/{admin}', [AdminController::class, 'destroy'])->name('delete-admin');
 
         // VIEW PROFILE
         Route::view('profile', 'admin.profile.view_profile')->name('profile');
