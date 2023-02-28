@@ -38,7 +38,7 @@
                             <a class="nav-link" href="{{ route('category') }}">View Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/forms/basic_elements.html">Add Category</a>
+                            <a class="nav-link" href="{{ route('add-edit.category') }}">Add Category</a>
                         </li>
                     </ul>
                 </div>

@@ -45,28 +45,23 @@
                                 <img src="{{ url('images/logo/0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png') }}"
                                     alt="0Bxq57pOfSNlX87Ur9jGquHIdW6PVsQuJlXcG2xe.png">
                             </div>
-
-                @if (Session::has('error_message'))
-                <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-                    <strong>Error:</strong> {{ Session('error_message') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-                            {{-- <h4>Hello! let's get started in admin panel</h4> --}}
-                            <h4>Hello! Welcome to Gunma Halal Food admin panel ...</h4>
-
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
-
-                            @if (Session('error_msg'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong> {{ Session('error_msg') }}</strong>
+                            @if (Session::has('error_message'))
+                                <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+                                    <strong>Error:</strong> {{ Session('error_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             @endif
+                            <div class="alert alert-danger alert-dismissible fade d-none ajax" role="alert">
+                                <strong>Error:</strong> <span id="ajax_message"></span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {{-- <h4>Hello! let's get started in admin panel</h4> --}}
+                            <h4>Hello! Welcome to Gunma Halal Food admin panel ...</h4>
+                            <h6 class="font-weight-light">Sign in to continue.</h6>
 
                             <form class="pt-3" id="admin_login" action="javascript:">
                                 @csrf
@@ -106,7 +101,7 @@
     <!-- container-scroller action="{{ url('/admin/login') }}" method="POST"  -->
     {{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> --}}
-        <script src="{{ asset('admin') }}/js/jquery-3.6.3.min.js"></script>
+    <script src="{{ asset('admin') }}/js/jquery-3.6.3.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -119,21 +114,27 @@
                     data: formData,
                     success: function(data) {
                         $('.loader').fadeOut();
-                        if(data.status == true){
+                        if (data.status == true) {
                             $('body').html(data.view);
-                            window.history.pushState(null, document.title = "Skydash Admin | Dashboard", "dashboard");
+                            window.history.pushState(null, document.title =
+                                "Skydash Admin | Dashboard", "dashboard");
                             // window.history.replaceState(null, "null", window.location.href = "dashboard")
-                        }else{
+                        }else if(data.status == false){
+                            $('.ajax').addClass('d-block show')
+                            $('#ajax_message').html(data.error_message)
+                        } else {
                             alert('Page Error')
                         }
-                    },error: function(){
+                    },
+                    error: function() {
                         alert('Error')
                     }
                 })
             });
 
-            $(document).on('click','.close', function(){
+            $(document).on('click', '.close', function() {
                 $('.alert').fadeOut();
+                $('.ajax').removeClass('d-block show');
             });
 
             $('.loader').fadeOut();

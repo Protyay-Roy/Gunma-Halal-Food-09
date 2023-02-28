@@ -66,8 +66,8 @@
                             <tr>
                                 <td class="cat_image">
                                     @if (!empty($category->image))
-                                        <a href="{{ url('' . $category->image) }}" title="View Image">
-                                            <img src="{{ url('' . $category->image) }}" alt="{{ $category->image }}"
+                                        <a href="{{ url('images/category_image/large/' . $category->image) }}" title="View Image">
+                                            <img src="{{ url('images/category_image/small/' . $category->image) }}" alt="{{ $category->image }}"
                                                 class="img-fluid">
                                         </a>
                                     @else
@@ -95,7 +95,7 @@
                                 </td>
                                 <td>
                                     @if (!empty($category->mainCategory->name))
-                                        {{$category->mainCategory->name}}
+                                        {{ $category->mainCategory->name }}
                                     @else
                                         Main Category
                                     @endif
@@ -125,10 +125,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('add-edit.admin', $category->slug) }}" class="action_btn text-info"
-                                        title="Edit Admin">
+                                    <a href="{{ route('add-edit.category', $category->slug) }}" class="action_btn text-info"
+                                        title="Edit Category">
                                         <i class="fa-solid fa-pencil"></i>
-
                                     </a>
                                     <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Category"
                                         delete_id={{ $category->id }} delete_path="category">

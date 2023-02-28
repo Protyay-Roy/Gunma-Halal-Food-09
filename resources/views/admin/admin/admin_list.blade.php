@@ -56,7 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admins as $admin)
+                        @foreach (App\Models\Admin::get() as $admin)
                             <tr>
                                 <td class="image_status">
                                     @if (!empty($admin->image))

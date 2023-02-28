@@ -1,19 +1,16 @@
 @extends('admin.layouts.layout')
 @section('title')
-    Admin
+    Add Category
 @endsection
-@section('admins_class')
+{{-- @section('admins_class')
     active
-@endsection
-{{-- @php
-    $admins_class = 'active';
-@endphp --}}
+@endsection --}}
 
 @section('content')
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-4">
-                <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> {{$title}}</h4>
+                <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> {{ $title }} Category</h4>
             </div>
             <div class="card-body col-8">
                 @if (Session::has('error_message'))
@@ -25,78 +22,72 @@
                     </div>
                 @endif
                 <form class="forms-sample"
-                    action="{{ isset($admins->id) ? route('add-edit.admin', $admins->email) : route('add-edit.admin') }}"
+                    action="{{ isset($categories->id) ? route('add-edit.category', $categories->slug) : route('add-edit.category') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name"
-                            value="{{ $admins->name }}">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+                            value="{{ $categories->name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="category_id">Category Type:</label>
+                        <select name="category_id" id="category_id" class="form-control">
+                            <option value="{{ null }}">Main Category</option>
+                            @foreach (App\Models\Category::where('category_id', null)->select('id', 'name')->get() as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ !empty($category->id) & ($categories->category_id == $category->id) ? 'selected' : '' }}>
+                                    {{ $category->name }}</option>
+                            @endforeach
+                        </select>
                         @error('name')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                            value="{{ $admins->email }}">
-                        @error('email')
+                        <label for="meta_description">Meta Description:</label>
+                        <input type="text" class="form-control" id="meta_description" name="meta_description"
+                            placeholder="Enter Meta Description" value="{{ $categories->meta_description }}">
+                        @error('meta_description')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="type">Admin Type:</label>
-                        <select name="type" id="type" class="form-control">
-                            {{-- @if (!empty($admins->id))
-                                <option value="{{$admins->type}}">{{ucfirst($admins->type)}}</option>
-                                <option value="vendor" >Vendor</option>
-                                <option value="admin">Admin</option>
-                            @else --}}
-                            <option {{(isset($admins->id) && $admins->type == 'vendor') ? 'selected' : ''}} value="vendor" >Vendor</option>
-                            <option {{(isset($admins->id) && $admins->type == 'admin') ? 'selected' : ''}} value="admin">Admin</option>
-                            {{-- @endif --}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile No.:</label>
-                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile number"
-                            value="{{ $admins->mobile }}">
-                        @error('mobile')
+                        <label for="description">Description:</label>
+                        {{-- <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description"
+                            value="{{ $categories->description }}"> --}}
+                        @if (!empty($categories->id))
+                            <textarea name="description" id="description" class="form-control" rows="4">
+                                {{ $categories->description }}
+                            </textarea>
+                        @else
+                            <textarea name="description" id="description" class="form-control" rows="4"></textarea>
+                        @endif
+                        {{-- <textarea name="description" id="description" class="form-control"  rows="4">
+                                {{!empty($categories->description) ? $categories->description : ''}}
+                            </textarea> --}}
+                        @error('description')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Address"
-                            value="{{ $admins->address }}">
-                        @error('address')
+                        <label for="slug">Url:</label> <small class="text-muted">(Url must be unique.)</small>
+                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter Url"
+                            value="{{ $categories->slug }}">
+                        @error('slug')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                        @error('password')
-                            <div class="text-danger">{{ $message }}*</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                            placeholder="Confirm Password">
-                        @error('confirm_password')
-                            <div class="text-danger">{{ $message }}*</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Profile Image:</label> <small class="text-muted">(Your image size should be 1000 x 1000 pixels)</small>
+                        <label for="image">Category Image:</label> <small class="text-muted">(Your image size should be
+                            1000 x 1000 pixels)</small>
                         <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">
-                        @if ($title == 'Add New Admin')
-                            Add Admin
+                        @if ($title == 'Add')
+                            <i class="fa-solid fa-plus"></i> &nbsp; Add Category
                         @else
-                            Update Admin
+                            <i class="fa-solid fa-rotate"></i> &nbsp; Update Category
                         @endif
                     </button>
                 </form>

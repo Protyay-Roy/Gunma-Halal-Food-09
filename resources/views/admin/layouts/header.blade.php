@@ -83,7 +83,7 @@
                         <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}"
                             class="img-fluid">
                     @else
-                        <img src="{{ url('images/dummy_image/person.png') }}" alt="{{ auth('admin')->user()->image }}"
+                        <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png"
                             class="img-fluid">
                     @endif
                 </a>

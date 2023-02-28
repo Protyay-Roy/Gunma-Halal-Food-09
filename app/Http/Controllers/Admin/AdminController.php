@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
@@ -28,11 +28,13 @@ class AdminController extends Controller
                 return response()->json([
                     'status' => true,
                     'view' => (string)View::make('admin.dashboard')
-
-
                 ]);
             } else {
-                return redirect()->back()->with('error_msg', 'Invalid Email or Password');
+                // return redirect()->back()->with('error_msg', 'Invalid Email or Password');
+                return response()->json([
+                    'status' => false,
+                    'error_message' => 'Invalid Email or Password!'
+                ]);
             }
         }
         return view('admin.login');
@@ -146,7 +148,7 @@ class AdminController extends Controller
     {
         if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
             return view('admin.admin.admin_list', [
-                'admins' => Admin::get()
+                // 'admins' => Admin::get()
             ]);
         } else {
             return redirect('admin/login')->with('error_message', 'You are not admin or your account will be inactive!');
@@ -237,7 +239,7 @@ class AdminController extends Controller
             $data = $request->all();
             // echo '<pre/>'; print_r ($data['status']); die;
             $data['status'] == 'Active' ? $status = 0 : $status = 1;
-            
+
             Admin::where('id', $data['status_id'])->update(['status' => $status]);
 
             return response()->json(['status' => $status, 'status_id' => $data['status_id']]);

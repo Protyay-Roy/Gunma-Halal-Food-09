@@ -40,9 +40,11 @@ Route::prefix('admin')->group(function () {
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
         Route::get('view-admin', [AdminController::class, 'adminList'])->name('view.admin');
+
         Route::match(['get', 'post'], 'add-edit-admin/{email?}', [AdminController::class, 'addEditAdmin'])->name('add-edit.admin');
 
         // CHANGE ADMIN STATUS
@@ -71,5 +73,8 @@ Route::prefix('admin')->group(function () {
 
         // CHANGE ADMIN STATUS
         Route::post('category-status', [CategoryController::class, 'status']);
+
+        // ADD-EDIT CATEGORY
+        Route::match(['get', 'post'], 'add-edit-category/{slug?}', [CategoryController::class, 'addEditCategory'])->name('add-edit.category');
     });
 });
