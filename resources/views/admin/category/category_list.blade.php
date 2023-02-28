@@ -4,10 +4,13 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header mt-4    ">
+        {{-- <div class="loader">
+            <img src="{{ asset('images/pre_loder/loading-loading-gif.gif') }}" alt="loading..." />
+        </div> --}}
+        <div class="card-header mt-4">
             <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-person"></i> All category list</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body body-content">
             {{-- <h4 class="card-title">All admin list</h4> --}}
             <div class="table-responsive pt-3">
                 @if (Session::has('success_message'))
@@ -36,7 +39,10 @@
                                 Name:
                             </th>
                             <th>
-                                Type:
+                                Under Category:
+                            </th>
+                            <th>
+                                Url:
                             </th>
                             {{-- <th>
                                 Meta Description:
@@ -56,15 +62,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
-                            @php
-                                // if(strlen($category->description) > 20){
-
-                                // }else {
-                                //     echo $category->description;
-                                // }
-                                // die;
-                            @endphp
+                        @foreach (App\Models\Category::with('mainCategory')->get() as $category)
                             <tr>
                                 <td class="cat_image">
                                     @if (!empty($category->image))
@@ -96,7 +94,11 @@
                                     {{ $category->name }}
                                 </td>
                                 <td>
-                                    {{ $category->category_id }}
+                                    @if (!empty($category->mainCategory->name))
+                                        {{$category->mainCategory->name}}
+                                    @else
+                                        Main Category
+                                    @endif
                                 </td>
                                 {{-- <td>
                                     {{ ucfirst($category->meta_description) }}
@@ -104,22 +106,20 @@
                                 {{-- <td>
                                     {{ $category->description }}
                                 </td> --}}
-                                {{-- <td>
-                                    {{ $category->address }}
-                                </td> --}}
+                                <td> {{ $category->slug }} </td>
                                 <td>
                                     @if ($category->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="brand-{{ $category->id }}" status_id="{{ $category->id }}"
-                                            status_path="brand">
+                                            id="category-{{ $category->id }}" status_id="{{ $category->id }}"
+                                            status_path="category">
                                             <i class="fa-sharp fa-solid fa-circle-check" status="Active"></i>
                                             {{-- <i class="fa-solid fa-circle"></i> --}}
 
                                         </a>
                                     @else
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="brand-{{ $category->id }}" status_id="{{ $category->id }}"
-                                            status_path="brand">
+                                            id="category-{{ $category->id }}" status_id="{{ $category->id }}"
+                                            status_path="category">
                                             <i class="fa-regular fa-circle" status="Inactive"></i>
                                         </a>
                                     @endif

@@ -4,12 +4,12 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header mt-4    ">
+        <div class="card-header mt-4">
             <h4 class="text-center mb-0 py-2"><i class="fa-solid fa-user"></i> &nbsp; All admin list</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body body-content">
             {{-- <h4 class="card-title">All admin list</h4> --}}
-            <div class="table-responsive">
+            <div class="pt-3">
                 @if (Session::has('success_message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success:</strong> {{ Session('success_message') }}
@@ -65,8 +65,8 @@
                                                 class="img-fluid">
                                         </a>
                                     @else
-                                        <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png" title="No Image"
-                                            class="img-fluid bg-light" style="border:1px solid #ffffff">
+                                        <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png"
+                                            title="No Image" class="img-fluid bg-light" style="border:1px solid #ffffff">
                                     @endif
                                     @if ($admin->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"

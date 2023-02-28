@@ -15,6 +15,8 @@ $(document).on("click", ".change_status", function () {
         confirmButtonText: 'Yes, change this!'
     }).then((result) => {
         if (result.isConfirmed) {
+
+            $('.loader').fadeIn();
             //   Swal.fire(
             //     'Deleted!',
             //     'Your file has been deleted.',
@@ -37,6 +39,7 @@ $(document).on("click", ".change_status", function () {
                 },
                 success: function (data) {
                     // alert(data['status'])
+                    $('.loader').fadeOut();
                     if (data['status'] == 0) {
                         $("#" + path + "-" + status_id).html('<i class="fa-regular fa-circle" status="Inactive" title="Change into active"></i>')
                     } else if (data['status'] == 1) {
@@ -49,7 +52,8 @@ $(document).on("click", ".change_status", function () {
         }
     })
 });
-
+// LOADER IMAGE HIDE
+$('.loader').hide();
 // DELETE WITH SWEET ALERT
 $(document).on("click", ".delete_row", function () {
     // DELETE CODE START
@@ -78,7 +82,7 @@ $(document).on("click", ".delete_row", function () {
         }
     })
 
-})
+});
 
 // $('#myform').on('submit',function(e){
 //     e.preventDefault();

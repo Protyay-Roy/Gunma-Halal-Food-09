@@ -236,11 +236,8 @@ class AdminController extends Controller
         if ($request->ajax()) {
             $data = $request->all();
             // echo '<pre/>'; print_r ($data['status']); die;
-            if ($data['status'] == 'Active') {
-                $status = 0;
-            } else {
-                $status = 1;
-            }
+            $data['status'] == 'Active' ? $status = 0 : $status = 1;
+            
             Admin::where('id', $data['status_id'])->update(['status' => $status]);
 
             return response()->json(['status' => $status, 'status_id' => $data['status_id']]);

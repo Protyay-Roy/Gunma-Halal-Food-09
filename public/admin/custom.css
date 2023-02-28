@@ -27,6 +27,14 @@
     transform: translate(-50%, -50%);
 }
 
+/* .card{
+    position: relative;
+}
+.card .loader img{
+    left: 50%;
+    top: 22%;
+    transform: translate(-50%, -50%);
+} */
 tr td a.action_btn:hover {
     text-decoration: none;
 }

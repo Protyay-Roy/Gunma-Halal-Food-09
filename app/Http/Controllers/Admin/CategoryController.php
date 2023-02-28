@@ -8,10 +8,28 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    function __construct()
+    {
+        if ((auth('admin')->user()->type != 'admin')) {
+            return redirect('admin/login')->with('error_message', 'You are not admin or your account will be inactive!');
+
+        }
+    }
     public function index()
     {
-        return view('admin.category.category_list',[
-            'categories' => Category::where('status',1)->get()
-        ]);
+        // $categories = Category::where('status',1)->with('mainCategory')->get();
+        dd(auth('admin')->user()->type);
+        return view('admin.category.category_list');
+    }
+    public function status(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $request->all();
+            $data['status'] == 'Active' ? $status = 0 : $status = 1;
+
+            Category::where('id', $data['status_id'])->update(['status' => $status]);
+
+            return response()->json(['status' => $status, 'status_id' => $data['status_id']]);
+        }
     }
 }

@@ -55,13 +55,21 @@ Route::prefix('admin')->group(function () {
 
         // UPDATE ADMIN PROFILE IMAGE
         Route::post('upload-image', [AdminController::class, 'uploadImage'])->name('upload_image');
+
         // VIEW UPDATE PROFILE PAGE
         Route::view('update-profile', 'admin.profile.update_profile')->name('view-update-profile');
+
         // UPDATE ADMIN PROFILE
         Route::post('update-own-profile', [AdminController::class, 'updateProfile'])->name('update-own-profile');
+
         // UPDATE ADMIN PROFILE
         Route::post('change-password', [AdminController::class, 'changePassword'])->name('change-password');
+
         // VIEW CATEGORY LISTING PAGE
         Route::get('category', [CategoryController::class, 'index'])->name('category');
+        // Route::view('category', 'admin.category.category_list')->name('category');
+
+        // CHANGE ADMIN STATUS
+        Route::post('category-status', [CategoryController::class, 'status']);
     });
 });

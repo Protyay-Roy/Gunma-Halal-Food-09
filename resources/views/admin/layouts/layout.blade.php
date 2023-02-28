@@ -41,6 +41,7 @@
 
 <body>
 
+
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         @include('admin.layouts.header')
@@ -240,7 +241,6 @@
 
             <!-- partial -->
             <div class="main-panel">
-
                 @yield('content')
 
                 <!-- content-wrapper ends -->
