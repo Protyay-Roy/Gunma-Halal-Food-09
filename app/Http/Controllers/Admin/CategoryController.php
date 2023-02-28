@@ -72,7 +72,7 @@ class CategoryController extends Controller
                         $previous_large_image = 'images/category_image/large/' . $categories->image;
                         $previous_small_image = 'images/category_image/small/' . $categories->image;
                         if (File::exists($previous_large_image) || File::exists($previous_small_image)) {
-                            File::delete($previous_large_image,$previous_small_image);
+                            File::delete($previous_large_image, $previous_small_image);
                             // File::delete($previous_small_image);
                         }
                         // GET FULL IMAGE NAME WITH EXTENTION
@@ -112,6 +112,22 @@ class CategoryController extends Controller
             }
 
             return view('admin.category.add_edit_category', compact('categories', 'title', 'message'));
+        }
+    }
+
+
+    public function destroy(Category $category)
+    {
+        if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
+            $previous_large_image = 'images/category_image/large/' . $category->image;
+            $previous_small_image = 'images/category_image/small/' . $category->image;
+            if (File::exists($previous_large_image) || File::exists($previous_small_image)) {
+                File::delete($previous_large_image, $previous_small_image);
+            }
+            $category->delete();
+            return back()->with('success_message', 'Your admin successfully deleted.');
+        } else {
+            return redirect('admin/login')->with('error_message', 'You are not admin or your account will be inactive!');
         }
     }
 }

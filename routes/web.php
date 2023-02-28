@@ -76,5 +76,7 @@ Route::prefix('admin')->group(function () {
 
         // ADD-EDIT CATEGORY
         Route::match(['get', 'post'], 'add-edit-category/{slug?}', [CategoryController::class, 'addEditCategory'])->name('add-edit.category');
+        // DELETE ADMIN (TYPE==VENDOR)
+        Route::get('delete-category/{category}', [CategoryController::class, 'destroy'])->name('delete-category');
     });
 });

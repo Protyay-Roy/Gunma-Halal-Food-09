@@ -249,6 +249,10 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
+            if (File::exists($admin->image)) {
+                File::delete($admin->image);
+                // File::delete($previous_small_image);
+            }
             $admin->delete();
             return back()->with('success_message', 'Your admin successfully deleted.');
         } else {
