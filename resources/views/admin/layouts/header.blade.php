@@ -78,7 +78,6 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    {{-- <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}" /> --}}
                     @if (!empty(auth('admin')->user()->image))
                         <img src="{{ url('' . auth('admin')->user()->image) }}" alt="{{ auth('admin')->user()->image }}"
                             class="img-fluid">
@@ -97,6 +96,18 @@
                         Logout
                     </a>
                 </div>
+            </li>
+            <li class="nav-item custom">
+                <ul>
+                    <li>
+                        <span>Mr. {{auth('admin')->user()->name}}</span>
+                    </li>
+                    <li>
+                        <small class="text-muted">{{ucfirst(auth('admin')->user()->type)}}</small>
+                    </li>
+                </ul>
+                {{-- <div class="d-block">Mr. {{auth('admin')->user()->name}}</div>
+                 --}}
             </li>
             {{-- <li class="nav-item nav-settings d-none d-lg-flex">
                 <a class="nav-link" href="#">

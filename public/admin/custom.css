@@ -139,3 +139,18 @@ tr .image_status a.change_status {
     width: 100px !important;
     border-radius: .3125rem !important;
 }
+.custom {
+    margin-left: 0.5rem !important;
+}
+.custom ul{
+    padding-left: 0 !important;
+}
+.custom ul li{
+    list-style: none;
+    line-height: 1.2;
+    color: #444;
+    font-weight: 600;
+}
+
+
+

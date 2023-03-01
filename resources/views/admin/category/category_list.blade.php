@@ -62,7 +62,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (App\Models\Category::with('mainCategory')->get() as $category)
+                        @foreach (App\Models\Category::orderBy('id', 'ASC')->with('mainCategory')->get() as $category)
                             <tr>
                                 <td class="cat_image">
                                     @if (!empty($category->image))
