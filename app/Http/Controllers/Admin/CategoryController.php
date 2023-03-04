@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
@@ -38,17 +37,11 @@ class CategoryController extends Controller
     // CHANGE CATEGORY STATUS
     public function status(Request $request)
     {
-        if (auth('admin')->user()->type === 'admin' && auth('admin')->user()->status === 1) {
-            if ($request->ajax()) {
-                $data = $request->all();
-                $data['status'] == 'Active' ? $status = 0 : $status = 1;
+        if ($request->ajax()) {
 
-                Category::where('id', $data['status_id'])->update(['status' => $status]);
-
-                return response()->json(['status' => $status, 'status_id' => $data['status_id']]);
-            }
-        } else {
-            return redirect('admin/login')->with('error_message', 'You are not admin or your account will be inactive!');
+            $request->status == 'Active' ? $status = 0 : $status = 1;
+            Category::where('id', $request->status_id)->update(['status' => $status]);
+            return response()->json(['status' => $status, 'status_id' => $request->status_id]);
         }
     }
 

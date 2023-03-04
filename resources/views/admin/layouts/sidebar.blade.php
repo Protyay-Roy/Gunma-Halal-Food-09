@@ -53,10 +53,10 @@
                 <div class="collapse" id="product-management">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/forms/basic_elements.html">View Products</a>
+                            <a class="nav-link" href="{{ route('product') }}">View Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/forms/basic_elements.html">Add Product</a>
+                            <a class="nav-link" href="{{ route('add-edit.product') }}">Add Product</a>
                         </li>
                     </ul>
                 </div>

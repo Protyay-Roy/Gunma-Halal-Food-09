@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,12 +72,25 @@ Route::prefix('admin')->group(function () {
         Route::get('category', [CategoryController::class, 'index'])->name('category');
         // Route::view('category', 'admin.category.category_list')->name('category');
 
-        // CHANGE ADMIN STATUS
+        // CHANGE CATEGORY STATUS
         Route::post('category-status', [CategoryController::class, 'status']);
 
         // ADD-EDIT CATEGORY
         Route::match(['get', 'post'], 'add-edit-category/{slug?}', [CategoryController::class, 'addEditCategory'])->name('add-edit.category');
-        // DELETE ADMIN (TYPE==VENDOR)
+
+        // DELETE CATEGORY
         Route::get('delete-category/{category}', [CategoryController::class, 'destroy'])->name('delete-category');
+
+        // VIEW PRODUCT LISTING PAGE
+        Route::get('product', [ProductController::class, 'index'])->name('product');
+
+        // CHANGE PRODUCT STATUS
+        Route::post('product-status', [ProductController::class, 'status']);
+
+        // ADD-EDIT PRODUCT
+        Route::match(['get', 'post'], 'add-edit-product/{slug?}', [ProductController::class, 'addEditProduct'])->name('add-edit.product');
+
+        // DELETE PRODUCT
+        Route::get('delete-product/{product}', [ProductController::class, 'destroy'])->name('delete-product');
     });
 });
