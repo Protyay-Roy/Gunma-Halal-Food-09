@@ -15,20 +15,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('admin_id');
-            $table->unsignedBigInteger('category_id');
+            $table->foreignId('admin_id')->constrained();
+            $table->foreignId('category_id')->constrained();
             $table->string('name');
             $table->string('slug')->unique();
             $table->float('price');
             $table->float('discount');
-            $table->string('type',10);
-            $table->string('weight');
-            $table->string('stock');
-            $table->string('alert');
-            $table->string('meta_description');
-            $table->string('description');
+            $table->enum('product_type',['Dry','Frozen'])->nullable();
+            $table->enum('cutting_system',['Yes','No'])->default('No');
+            $table->integer('stock');
             $table->string('image');
-            $table->string('video');
             $table->timestamps();
         });
     }

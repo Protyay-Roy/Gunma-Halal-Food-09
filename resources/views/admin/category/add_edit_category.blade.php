@@ -34,7 +34,7 @@
                         <label for="category_id">Category Type:</label>
                         <select name="category_id" id="category_id" class="form-control">
                             <option value="{{ null }}">Main Category</option>
-                            @foreach (App\Models\Category::where('category_id', null)->select('id', 'name')->get() as $category)
+                            @foreach (App\Models\Category::where(['category_id'=>null,'status'=>1])->select('id', 'name')->get() as $category)
                                 <option value="{{ $category->id }}"
                                     {{ !empty($category->id) & ($categories->category_id == $category->id) ? 'selected' : '' }}>
                                     {{ $category->name }}</option>
