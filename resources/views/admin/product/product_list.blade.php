@@ -30,48 +30,57 @@
                     <thead>
                         <tr>
                             <th>
-                                Admins:
+                                Products:
                             </th>
                             <th>
                                 Name:
                             </th>
                             <th>
-                                Email:
+                                Add by:
                             </th>
                             <th>
-                                Type:
-                            </th>
-                            <th>
-                                Mobile:
-                            </th>
-                            <th>
-                                Address:
+                                Category:
                             </th>
                             {{-- <th>
-                                Status:
+                                Slug:
                             </th> --}}
+                            <th>
+                                Price:
+                            </th>
+                            <th>
+                                Discount:
+                            </th>
+                            <th>
+                                Product type:
+                            </th>
+                            <th>
+                                Cutting:
+                            </th>
+                            <th>
+                                Stock:
+                            </th>
                             <th>
                                 Action:
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (App\Models\Admin::get() as $admin)
+                        @foreach (App\Models\Product::get() as $product)
                             <tr>
                                 <td class="image_status">
-                                    @if (!empty($admin->image))
-                                        <a href="{{ url('' . $admin->image) }}" title="View Image">
-                                            <img src="{{ url('' . $admin->image) }}" alt="{{ $admin->image }}"
+                                    @if (!empty($product->image))
+                                        <a href="{{ url('' . $product->image) }}" title="View Image">
+                                            <img src="{{ url('' . $product->image) }}" alt="{{ $product->image }}"
                                                 class="img-fluid">
                                         </a>
                                     @else
-                                        <img src="{{ url('images/dummy_image/person.png') }}" alt="person.png"
+                                        <img src="{{ url('images/dummy_image/no_img.png') }}" alt="person.png"
                                             title="No Image" class="img-fluid bg-light" style="border:1px solid #ffffff">
                                     @endif
-                                    @if ($admin->status == 1)
+                                    @if ($product->status == 1)
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="admin-{{ $admin->id }}" status_id="{{ $admin->id }}"
-                                            status_path="admin">
+                                            id="product-{{ $product->id }}" status_id="{{ $product->id }}"
+                                            status_path="product">
                                             {{-- <i class="mdi mdi-checkbox-marked-circle" status="Active"></i> --}}
                                             <i class="fa-sharp fa-solid fa-circle-check" status="Active"></i>
                                             {{-- <i class="fa-solid fa-circle" status="Active" title="Change into inactive"></i> --}}
@@ -79,57 +88,50 @@
                                         </a>
                                     @else
                                         <a href="javascript:void(0)" class="change_status text-success"
-                                            id="admin-{{ $admin->id }}" status_id="{{ $admin->id }}"
-                                            status_path="admin">
+                                            id="product-{{ $product->id }}" status_id="{{ $product->id }}"
+                                            status_path="product">
                                             <i class="fa-regular fa-circle" status="Inactive"
                                                 title="Change into active"></i>
                                         </a>
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $admin->name }}
+                                    {{ $product->name }}
                                 </td>
                                 <td>
-                                    {{ $admin->email }}
+                                    {{ $product->admin_id }}
                                 </td>
                                 <td>
-                                    {{ ucfirst($admin->type) }}
-                                </td>
-                                <td>
-                                    {{ $admin->mobile }}
-                                </td>
-                                <td>
-                                    {{ $admin->address }}
+                                    {{ $product->category_id }}
                                 </td>
                                 {{-- <td>
-                                    @if ($admin->status == 1)
-                                        <a href="javascript:void(0)" class="change_status text-success"
-                                        id="brand-{{ $admin->id }}" status_id="{{ $admin->id }}"
-                                            status_path="brand">
-                                            <i class="fa-sharp fa-solid fa-circle-check" status="Active"></i>
-                                            <i class="fa-solid fa-circle"></i>
-
-                                        </a>
-                                    @else
-                                        <a href="javascript:void(0)" class="change_status text-success"
-                                            id="brand-{{ $admin->id }}" status_id="{{ $admin->id }}"
-                                            status_path="brand">
-                                            <i class="fa-regular fa-circle" status="Inactive"></i>
-                                        </a>
-                                    @endif
+                                    {{ $product->slug }}
                                 </td> --}}
                                 <td>
-                                    <a href="{{ route('add-edit.admin', $admin->email) }}" class="action_btn text-info"
-                                        title="Edit Admin">
+                                    {{ $product->price }}
+                                </td>
+                                <td>
+                                    {{ $product->discount }}
+                                </td>
+                                <td>
+                                    {{ $product->product_type }}
+                                </td>
+                                <td>
+                                    {{ $product->cutting_system }}
+                                </td>
+                                <td>
+                                    {{ $product->stock }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('add-edit.product', $product->slug) }}" class="action_btn text-info"
+                                        title="Edit Product">
                                         <i class="fa-solid fa-pen-to-square"></i>
 
                                     </a>
-                                    @if ($admin->type !== 'admin')
-                                        <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Admin"
-                                            delete_id={{ $admin->id }} delete_path="admin">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
-                                    @endif
+                                    <a href="javascript:" class="text-danger action_btn delete_row" title="Delete Product"
+                                        delete_id={{ $product->id }} delete_path="product">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

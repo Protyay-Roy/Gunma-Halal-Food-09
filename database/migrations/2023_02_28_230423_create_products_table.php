@@ -24,7 +24,8 @@ return new class extends Migration
             $table->enum('product_type',['Dry','Frozen'])->nullable();
             $table->enum('cutting_system',['Yes','No'])->default('No');
             $table->integer('stock');
-            $table->string('image');
+            $table->tinyInteger('status');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
