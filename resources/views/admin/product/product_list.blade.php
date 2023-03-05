@@ -9,7 +9,7 @@
         </div>
         <div class="card-body body-content">
             {{-- <h4 class="card-title">All admin list</h4> --}}
-            <div class="pt-3">
+            <div class="pt-3 product_list_table">
                 @if (Session::has('success_message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success:</strong> {{ Session('success_message') }}
@@ -26,9 +26,12 @@
                         </button>
                     </div>
                 @endif --}}
-                <table id="bootstrap_datatable" class="table table-dark table-bordered" style="width:100%">
+                <table id="bootstrap_datatable" class="table table-dark table-bordered">
                     <thead>
                         <tr>
+                            <th>
+                                #
+                            </th>
                             <th>
                                 Products:
                             </th>
@@ -67,6 +70,7 @@
                     <tbody>
                         @foreach (App\Models\Product::get() as $product)
                             <tr>
+                                <td>{{$loop->index + 1}}</td>
                                 <td class="image_status">
                                     @if (!empty($product->image))
                                         <a href="{{ url('' . $product->image) }}" title="View Image">
@@ -137,6 +141,13 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{-- <div class="row">
+                    <div class="col-6">
+                        {{ App\Models\Product::paginate(10)->links() }}
+                    </div>
+                </div> --}}
+
             </div>
         </div>
     </div>

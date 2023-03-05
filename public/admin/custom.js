@@ -2,6 +2,11 @@
 $(document).ready(function () {
     $('#bootstrap_datatable').DataTable();
 });
+// $(document).ready(function() {
+//     $('#product-datatable').DataTable({
+//         scrollX: true,
+//     });
+// });
 // CHANGE STATUS ACTIVE OR INACTIVE WITH SWEET ALERT
 $(document).on("click", ".change_status", function () {
     // SWEET ALERT START

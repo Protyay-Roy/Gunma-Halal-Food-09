@@ -152,5 +152,17 @@ tr .image_status a.change_status {
     font-weight: 600;
 }
 
+/* .dataTables_scrollHead{
+    padding-bottom: 10px !important;
+} */
+.dataTables_scroll{
+    padding-bottom: 0.5rem !important;
+}
+.dataTables_scrollBody{
+    padding-bottom: 1rem !important;
+}
 
+/* .product_list_table #product-datatable_wrapper #product-datatable_info,#product-datatable_paginate,#product-datatable_length{
+    display: none !important;
+} */
 

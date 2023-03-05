@@ -287,7 +287,8 @@
 
     <!-- End custom js for this page-->
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>{{ csrf_field() }}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- {{ csrf_field() }} --}}
     {{-- BOOTSTRAP DATATABLE --}}
     <script src="{{ asset('admin') }}/js/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
