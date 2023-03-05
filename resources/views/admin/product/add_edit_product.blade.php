@@ -5,9 +5,6 @@
 @section('admins_class')
     active
 @endsection
-{{-- @php
-    $admins_class = 'active';
-@endphp --}}
 
 @section('content')
     <div class="col-12 grid-margin stretch-card">
@@ -19,10 +16,10 @@
                     {{-- @php
                         echo $title;
                     @endphp --}}
-                    @if ($title == "Add")
-                        <i class="fa-solid fa-user-plus"></i> &nbsp;  Add New Admin
+                    @if ($title == 'Add')
+                        <i class="fa-solid fa-user-plus"></i> &nbsp; Add New Admin
                     @else
-                        <i class='fa-solid fa-user-pen'></i> &nbsp;  Update Admin Information
+                        <i class='fa-solid fa-user-pen'></i> &nbsp; Update Admin Information
                     @endif
                 </h4>
             </div>
@@ -36,71 +33,92 @@
                     </div>
                 @endif
                 <form class="forms-sample"
-                    action="{{ isset($admins->id) ? route('add-edit.admin', $admins->email) : route('add-edit.admin') }}"
+                    action="{{ isset($products->id) ? route('add-edit.product', $products->slug) : route('add-edit.product') }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name"
-                            value="{{ $admins->name }}">
+                            value="{{ $products->name }}">
+                        @error('name')
+                            <div class="text-danger">{{ $message }}*</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
+                            value="{{ $products->name }}">
                         @error('name')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                            value="{{ $admins->email }}">
-                        @error('email')
+                        <label for="slug">Url/Slug:</label>
+                        <input type="text" class="form-control" id="slug" name="slug"
+                            placeholder="Enter url/slug" value="{{ $products->slug }}">
+                        @error('slug')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="type">Admin Type:</label>
-                        <select name="type" id="type" class="form-control">
-                            {{-- @if (!empty($admins->id))
-                                <option value="{{$admins->type}}">{{ucfirst($admins->type)}}</option>
-                                <option value="vendor" >Vendor</option>
-                                <option value="admin">Admin</option>
-                            @else --}}
-                            <option {{(isset($admins->id) && $admins->type == 'vendor') ? 'selected' : ''}} value="vendor" >Vendor</option>
-                            <option {{(isset($admins->id) && $admins->type == 'admin') ? 'selected' : ''}} value="admin">Admin</option>
-                            {{-- @endif --}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile No.:</label>
-                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile number"
-                            value="{{ $admins->mobile }}">
-                        @error('mobile')
+                        <label for="price">Price:</label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Enter Price"
+                            value="{{ $products->price }}">
+                        @error('price')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Address"
-                            value="{{ $admins->address }}">
-                        @error('address')
+                        <label for="discount">Discount:</label>
+                        <input type="text" class="form-control" id="discount" name="discount"
+                            placeholder="Enter discount" value="{{ $products->discount }}">
+                        @error('discount')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                        @error('password')
+                        <label for="stock">Stock:</label>
+                        <input type="text" class="form-control" id="stock" name="stock" placeholder="Enter stock"
+                            value="{{ $products->stock }}">
+                        @error('stock')
                             <div class="text-danger">{{ $message }}*</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                            placeholder="Confirm Password">
-                        @error('confirm_password')
-                            <div class="text-danger">{{ $message }}*</div>
-                        @enderror
+                    <div class="form-group" style="border: 1px solid #CED4DA; padding: 0.7rem;border-radius: 0.3125rem">
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>Select your product type:</h5>
+                                <div class="d-flex">
+                                    <div class="mr-2">
+                                        <input type="radio" id="dry" name="product_type" value="Dry">
+                                    <label for="dry">Dry</label>
+                                    </div>
+                                    <div class="ml-2">
+                                        <input type="radio" id="frozen" name="product_type" value="Frozen">
+                                    <label for="frozen">Frozen</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h5>Do this product have any cutting system?:</h5>
+                                <div class="d-flex">
+                                    <div class="mr-2">
+                                        <input type="radio" id="yes" name="cutting_system" value="Yes">
+                                    <label for="yes">Yes</label>
+                                    </div>
+                                    <div class="ml-2">
+                                        <input type="radio" id="no" name="cutting_system" value="No">
+                                    <label for="no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="image">Profile Image:</label> <small class="text-muted">(Your image size should be 1000 x 1000 pixels)</small>
+                        <label for="image">Profile Image:</label> <small class="text-muted">(Your image size should be
+                            1000 x 1000 pixels)</small>
                         <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">

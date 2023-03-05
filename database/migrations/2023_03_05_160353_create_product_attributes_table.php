@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
-            $table->integer('weight')->nullable();
-            $table->string('weight_unit')->nullable();
+            $table->unsignedInteger('stock_alert')->nullable();
+            $table->string('weight')->nullable();
             $table->string('meta_description')->nullable();
             $table->text('description')->nullable();
         });
